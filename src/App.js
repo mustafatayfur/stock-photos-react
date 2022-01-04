@@ -27,7 +27,12 @@ function App() {
       const data = await response.json()
       // console.log(data)
       setPhotos((oldPhotos)=> {
-        return [...oldPhotos, ...data]
+        if(query){
+          return [...oldPhotos, ...data.results]
+        }else{
+          return [...oldPhotos, ...data]
+        }
+        
       })
       setLoading(false)
     }catch(error) {
@@ -56,13 +61,14 @@ function App() {
 
   const handleSubmit= (e)=>{
     e.preventDefault()
+    fetchImages()
   }
 
   return (
     <main>
         <section className="search">
             <form className="search form">
-                <input type="text" placeholder='search' className="form-input" />
+                <input type="text" placeholder='search' className="form-input" value={query} onChange={(e)=> setQuery(e.target.value)} />
                 <button type='submit' className="submit-btn" onClick={handleSubmit}>
                     <FaSearch/>
                 </button>

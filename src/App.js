@@ -18,7 +18,7 @@ function App() {
     let url;
     const urlPage= `&page=${page}`
     const urlQuery=`&query=${query}` 
-    url = `${mainUrl}${clientID}&page=3`;
+    // url = `${mainUrl}${clientID}&page=3`;
     if(query){
       url= `${searchUrl}${clientID}${urlPage}${urlQuery}`
     }else{
